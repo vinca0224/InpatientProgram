@@ -12,7 +12,7 @@ class DBCon {
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "ADAM";
 			String pw = "1234";
-			String sql = "SELECT * FROM EMP";
+			String sql = "SELECT * FROM INFO";
 			conn = DriverManager.getConnection(url, user, pw);
 			System.out.printf("DB 연결 성공!\n");
 			
@@ -30,7 +30,6 @@ class DBCon {
 		} finally {
 			try {
 				conn.close();
-				System.out.printf("DB 연결 해제\n");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -16,14 +16,22 @@ public class Menu{
 
             switch (input) {
                 case 1:
-                    System.out.println("---------");
-                    System.out.println("환자 등록");
-                    System.out.println("---------");
+                    System.out.println("----------------------------");
+                    System.out.println("등록할 환자정보를 입력하세요");
+                    System.out.println("----------------------------");
+                    String name = sc.nextLine();
+                    System.out.println(name);       
+
                     break;
 
                 case 2:
-                DBCon db = new DBCon();
-                db.connect();
+                    System.out.println("-------------");
+                    System.out.println("환자정보 조회");
+                    System.out.println("-------------");
+            
+                    DBCon db = new DBCon();
+                    db.connect();
+                    sc.nextLine();
                     break;
 
                 case 3:
