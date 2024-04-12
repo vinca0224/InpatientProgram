@@ -1,6 +1,5 @@
 ## 라이브러리 import
 import oracledb as db
-
 ## DB에 연결
 con = db.connect(user= 'ADAM', password='1234', dsn='localhost:1521/XE')
 cursor = con.cursor() #DB 지시자
@@ -22,7 +21,7 @@ while(do):
         ### id가 같은 행 갯수 확인
         chk = cursor.rowcount
         if chk > 0:
-            print('동일한 Id가 존재합니다')
+            print('동일한 ID가 존재합니다')
         else:
             cursor.execute(f"insert into INFO values('{info[0]}','{info[1]}','{info[2]}')")
             cursor.execute('commit')
@@ -35,12 +34,23 @@ while(do):
 
     elif select== '3':
         print('환자수정\n')
-         ### 환자명 입력
+        ### 환자명 입력
+        search = input('환자 이름 입력하세요> ')
         cursor.execute(f"select * from INFO where name = '{search}'")
         print(cursor.fetchall())
-        fixId = input('수정할 환자 id 입력하세요> ')
-        cursor.execute(f"select * from INFO where id = {fixId}")
-        modify = [input('수정항목'), input('수정값')]
+        Id = input('수정할 환자 id 입력하세요> ')
+        cursor.execute(f"select * from INFO where id = {Id}")
+        modify = input('수정항목 > ')
+        if modify== '이름':
+            fixName= input('변경할 이름 입력 > ')
+            cursor.execute(f"update INFO set NAME= '{fixName}' where id = {Id}")
+            cursor.execute('commit')
+            print('수정완료')
+        elif modify== '전화번호':
+            fixTel= input('변경할 번호 입력 > ')
+            cursor.execute(f"update INFO set TEL= '{fixTel}' where id = {Id}")
+            cursor.execute('commit')
+            print('수정완료')
 
     elif select== '4':
         print('환자삭제\n')
