@@ -1,0 +1,43 @@
+import sys
+from PyQt5 import uic
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+import oracledb as db
+
+class MainWindow(QMainWindow):   
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('./mainUi.ui', self)
+        self.setWindowTitle('환자관리')
+        self.dbConnect()
+        self.cursor()
+        self.table()
+
+    def dbConnect(self):
+        con = db.connect(user= 'ADAM', password='1234', dsn='localhost:1521/XE') # DB 연결
+        return con
+
+    def dbCursor(self):
+        cursor = self.dbConnect().cursor() #DB 지시자
+        return cursor
+    
+    def sql(self, sql):
+        cursor = self.dbCursor()
+        cursor.execute(sql)
+
+    def table(self):
+        self.sql('select * from INFO')
+        row= self.dbCursor().fetchall()
+        count = len(row)
+        self.tableWidget.setRowCount(count)
+        for x in range(count):
+            idx, name, tel = row[x]
+            self.tableWidget.setItem(x,0,QTableWidgetItem(idx))
+            self.tableWidget.setItem(x,1,QTableWidgetItem(name))
+            self.tableWidget.setItem(x,2,QTableWidgetItem(tel))
+
+if __name__ == '__main__':
+    app= QApplication(sys.argv)
+    mainWindow = MainWindow()
+    mainWindow.show()
+    sys.exit(app.exec_())
