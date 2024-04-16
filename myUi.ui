@@ -49,6 +49,12 @@
    <attribute name="horizontalHeaderStretchLastSection">
     <bool>true</bool>
    </attribute>
+   <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderStretchLastSection">
+    <bool>false</bool>
+   </attribute>
    <column>
     <property name="text">
      <string>ID</string>
@@ -76,16 +82,23 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="btnAdd">
+     <widget class="QPushButton" name="btnCol">
       <property name="text">
        <string>행 추가</string>
       </property>
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="btnAdd">
+      <property name="text">
+       <string>등록</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="btnDelete">
       <property name="text">
-       <string>PushButton</string>
+       <string>삭제</string>
       </property>
      </widget>
     </item>

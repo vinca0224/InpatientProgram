@@ -9,47 +9,67 @@ import oracledb as db
 class MainWidget(QWidget):
     def __init__(self):
         super().__init__()
-        self.menu()
+        uic.loadUi('./myUi.ui', self)
+        self.printTable()
         self.func()
 
-    def menu(self):
-        uic.loadUi('./myUi.ui', self)
+    def printTable(self):
         db= connectDb()
         db[1].execute('select * from INFO')
         result= db[1].fetchall()
-        self.printTable(result)
-
-    def printTable(self, row):
-        count = len(row)
+        count = len(result)
         self.tableWidget.setRowCount(count)
         for x in range(count):
-            idx, name, tel = row[x]
+            idx, name, tel = result[x]
             self.tableWidget.setItem(x,0,QTableWidgetItem(idx))
             self.tableWidget.setItem(x,1,QTableWidgetItem(name))
             self.tableWidget.setItem(x,2,QTableWidgetItem(tel))
 
+    ## 버튼 클릭할때의 동작
     def func(self):
+        self.btnCol.clicked.connect(self.btnColClicked)
         self.btnAdd.clicked.connect(self.btnAddClicked)
         self.btnSave.clicked.connect(self.btnSaveClicked)
         self.btnDelete.clicked.connect(self.btnDeleteClicked)
+        self.tableWidget.cellClicked.connect(self.cellClicked)
 
     ## 행 추가
-    def btnAddClicked(self):
+    def btnColClicked(self):
         self.tableWidget.insertRow(0)
 
-    ## DB 저장
+    ## 신규 등록
+    def btnAddClicked(self):
+        idx = self.tableWidget.item(0,0).text()
+        name = self.tableWidget.item(0,1).text()
+        tel = self.tableWidget.item(0,2).text()
+        db= connectDb()
+        db[1].execute(f"insert into INFO (ID, NAME, TEL) values ('{idx}','{name}','{tel}')")
+        db[1].execute('commit')
+
+    ## DB 수정
     def btnSaveClicked(self):
         rowCount = self.tableWidget.rowCount()
         for i in range(rowCount):
             idx = self.tableWidget.item(i,0).text()
             name = self.tableWidget.item(i,1).text()
             tel = self.tableWidget.item(i,2).text()
-            print(idx, name, tel)
+            db= connectDb()
+            db[1].execute(f"update INFO set NAME= '{name}', TEL= '{tel}' where ID= '{idx}'")
+            db[1].execute('commit')
 
     ## 삭제
     def btnDeleteClicked(self):
-        pass
-    
+        row = self.rownum
+        idx = self.tableWidget.item(row,0).text()
+        db= connectDb()
+        db[1].execute(f"delete from INFO where ID = '{idx}'")
+        db[1].execute('commit')
+        self.printTable()
+
+    ## 마우스로 클릭하면 해당 셀의 행의 데이터 값들 출력
+    def cellClicked(self, row):
+        self.rownum = row
+
     ## 종료
     def closeEvent(self, QCloseEvent) -> None: # 오버라이딩
         re = QMessageBox.question(self, '종료확인', '종료하시겠습니까?', QMessageBox.Yes|QMessageBox.No)
