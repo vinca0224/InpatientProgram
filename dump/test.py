@@ -8,7 +8,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         global aaa
         super().__init__()
-        aaa= uic.loadUi('./mainUi.ui', self)
+        aaa= uic.loadUi('./myUi.ui', self)
         self.setWindowTitle('환자관리')
         connectDb()
         self.mainUi()

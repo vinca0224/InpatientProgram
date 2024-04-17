@@ -29,22 +29,34 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>110</y>
+     <y>130</y>
      <width>881</width>
-     <height>481</height>
+     <height>461</height>
     </rect>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+   </property>
+   <property name="textElideMode">
+    <enum>Qt::ElideMiddle</enum>
+   </property>
+   <property name="sortingEnabled">
+    <bool>true</bool>
    </property>
    <attribute name="horizontalHeaderVisible">
     <bool>true</bool>
    </attribute>
    <attribute name="horizontalHeaderCascadingSectionResizes">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <attribute name="horizontalHeaderMinimumSectionSize">
     <number>33</number>
    </attribute>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>250</number>
+    <number>100</number>
+   </attribute>
+   <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+    <bool>true</bool>
    </attribute>
    <attribute name="horizontalHeaderStretchLastSection">
     <bool>true</bool>
@@ -59,15 +71,56 @@
     <property name="text">
      <string>ID</string>
     </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
    </column>
    <column>
     <property name="text">
      <string>이 름</string>
     </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
    </column>
    <column>
     <property name="text">
      <string>전 화 번 호</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>병 실</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>퇴 원 예 정 일</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>진 료 과</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>비 고</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
     </property>
    </column>
   </widget>
@@ -82,23 +135,16 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
+     <widget class="QPushButton" name="btnRenew">
+      <property name="text">
+       <string>조회</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="btnCol">
       <property name="text">
-       <string>행 추가</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btnAdd">
-      <property name="text">
        <string>등록</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btnDelete">
-      <property name="text">
-       <string>삭제</string>
       </property>
      </widget>
     </item>
@@ -109,17 +155,58 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="btnDelete">
+      <property name="text">
+       <string>삭제</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <widget class="QLineEdit" name="lineSearch">
+  <widget class="QWidget" name="horizontalLayoutWidget_2">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>80</y>
      <width>881</width>
-     <height>20</height>
+     <height>31</height>
     </rect>
    </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>이름이나 ID 검색</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineSearch"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnSearch">
+      <property name="text">
+       <string>검색</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
