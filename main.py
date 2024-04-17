@@ -103,7 +103,22 @@ class MainWidget(QWidget):
     
     ## 검색
     def btnSearched(self):
-     self.printTable()
+        searchText = self.lineSearch.text()
+        db= connectDb()
+        db[1].execute(f"select * from INFO where id= '{searchText}' or name = '{searchText}'")
+        result= db[1].fetchall()
+        count = len(result)
+        self.tableWidget.setRowCount(count)
+        for x in range(count):
+            idx, name, tel, room, date, dept, desc = result[x]
+            self.tableWidget.setItem(x,0,QTableWidgetItem(idx))
+            self.tableWidget.setItem(x,1,QTableWidgetItem(name))
+            self.tableWidget.setItem(x,2,QTableWidgetItem(tel))
+            self.tableWidget.setItem(x,3,QTableWidgetItem(room))
+            self.tableWidget.setItem(x,4,QTableWidgetItem(date))
+            self.tableWidget.setItem(x,5,QTableWidgetItem(dept))
+            self.tableWidget.setItem(x,6,QTableWidgetItem(desc))
+        self.disableColumnSelection(0) # ID = 0
 
     ## 마우스로 클릭하면 해당 셀의 행의 데이터 값들 출력
     def cellClicked(self, row):
@@ -119,7 +134,7 @@ class MainWidget(QWidget):
 
 ## DB와 연결
 def connectDb():
-    conn= db.connect(user= 'ADAM', password='1234', dsn='localhost:1521/XE')
+    conn= db.connect(user= 'ALPHA', password='1234', dsn='localhost:1521/XE')
     cursor= conn.cursor() # DB 지시자
     return conn, cursor
 

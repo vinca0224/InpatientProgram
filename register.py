@@ -35,9 +35,9 @@ class RegisterInfo(QWidget):
             except AttributeError: 
                 self.eventMsg('실패', '공백을 남기지 마세요')
                 pass
-            except:
-                self.eventMsg('실패', '동일한 ID가 존재합니다')
-                pass
+            # except:
+            #     self.eventMsg('실패', '동일한 ID가 존재합니다')
+            #     pass
         else:
             QMessageBox.about(self,'취소','취소되었습니다.')
             pass
@@ -56,7 +56,7 @@ class RegisterInfo(QWidget):
 
 ## DB와 연결
 def connectDb():
-    conn= db.connect(user= 'ADAM', password='1234', dsn='localhost:1521/XE')
+    conn= db.connect(user= 'ALPHA', password='1234', dsn='localhost:1521/XE')
     cursor= conn.cursor() # DB 지시자
     return conn, cursor
 
