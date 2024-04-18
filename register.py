@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
-import oracledb as db
+import oracledb as odb
 from PyQt5.QtGui import *
 
 class RegisterInfo(QWidget):
@@ -32,12 +32,17 @@ class RegisterInfo(QWidget):
                 db[1].execute(f"insert into INFO (ID, NAME, TEL, ROOM, DEPT, DAY, DC) values ('{idx}','{name}','{tel}','{room}','{dept}','{date}','{desc}')")
                 db[1].execute('commit')
                 self.eventMsg('성공', '저장되었습니다')
+                self.close()
             except AttributeError: 
                 self.eventMsg('실패', '공백을 남기지 마세요')
                 pass
-            # except:
-            #     self.eventMsg('실패', '동일한 ID가 존재합니다')
-            #     pass
+            except odb.IntegrityError:
+                self.eventMsg('실패', '동일한 ID가 존재합니다')
+                pass
+            except:
+                self.eventMsg('실패', '형식에 맞게 작성해주세요')
+                pass
+            
         else:
             QMessageBox.about(self,'취소','취소되었습니다.')
             pass
@@ -47,16 +52,16 @@ class RegisterInfo(QWidget):
         QMessageBox.about(self,f'{event}',f'{des}')
 
     ## 종료
-    def closeEvent(self, QCloseEvent) -> None: # 오버라이딩
-        re = QMessageBox.question(self, '종료확인', '종료하시겠습니까?', QMessageBox.Yes|QMessageBox.No)
-        if re == QMessageBox.Yes: # 종료
-            QCloseEvent.accept()
-        else:
-            QCloseEvent.ignore() # 취소
+    # # def closeEvent(self, QCloseEvent) -> None: # 오버라이딩
+    #     re = QMessageBox.question(self, '종료확인', '종료하시겠습니까?', QMessageBox.Yes|QMessageBox.No)
+    #     if re == QMessageBox.Yes: # 종료
+    #         QCloseEvent.accept()
+    #     else:
+    #         QCloseEvent.ignore() # 취소
 
 ## DB와 연결
 def connectDb():
-    conn= db.connect(user= 'ALPHA', password='1234', dsn='localhost:1521/XE')
+    conn= odb.connect(user= 'ADAM', password='1234', dsn='localhost:1521/XE')
     cursor= conn.cursor() # DB 지시자
     return conn, cursor
 

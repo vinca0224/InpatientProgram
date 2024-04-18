@@ -4,14 +4,14 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QWidget
-import oracledb as db
+import oracledb as odb
 from register import RegisterInfo
 
 class MainWidget(QWidget):
     def __init__(self):
         super().__init__()
         uic.loadUi('./myUi.ui', self)
-        self.setWindowTitle('inpatient prigram v0.1')
+        self.setWindowTitle('inpatient program v0.1')
         self.setWindowIcon(QIcon('icon.png'))
         self.printTable()
         self.func()
@@ -21,9 +21,11 @@ class MainWidget(QWidget):
         db[1].execute('select * from INFO')
         result= db[1].fetchall()
         count = len(result)
-        self.tableWidget.setRowCount(count)     
+        self.tableWidget.setRowCount(count)
         for x in range(count):
             idx, name, tel, room, date, dept, desc = result[x]
+            ### datetime 타입을 str로 변환
+            date = str(date).split(' ')[0]
             self.tableWidget.setItem(x,0,QTableWidgetItem(idx))
             self.tableWidget.setItem(x,1,QTableWidgetItem(name))
             self.tableWidget.setItem(x,2,QTableWidgetItem(tel))
@@ -77,6 +79,7 @@ class MainWidget(QWidget):
                 db= connectDb()
                 db[1].execute(f"update INFO set NAME= '{name}', TEL= '{tel}', ROOM= '{room}', DAY= '{date}', DEPT= '{dept}', DC= '{desc}' where ID= '{idx}'")
                 db[1].execute('commit')
+                QMessageBox.about(self,'수정 성공','수정하였습니다.')
             except AttributeError:
                 pass
             except: 
@@ -111,6 +114,8 @@ class MainWidget(QWidget):
         self.tableWidget.setRowCount(count)
         for x in range(count):
             idx, name, tel, room, date, dept, desc = result[x]
+            ### datetime 타입을 str로 변환
+            date = str(date).split(' ')[0]
             self.tableWidget.setItem(x,0,QTableWidgetItem(idx))
             self.tableWidget.setItem(x,1,QTableWidgetItem(name))
             self.tableWidget.setItem(x,2,QTableWidgetItem(tel))
@@ -128,13 +133,14 @@ class MainWidget(QWidget):
     def closeEvent(self, QCloseEvent) -> None: # 오버라이딩
         re = QMessageBox.question(self, '종료확인', '종료하시겠습니까?', QMessageBox.Yes|QMessageBox.No)
         if re == QMessageBox.Yes: # 종료
+            
             QCloseEvent.accept()
         else:
             QCloseEvent.ignore() # 취소
 
 ## DB와 연결
 def connectDb():
-    conn= db.connect(user= 'ALPHA', password='1234', dsn='localhost:1521/XE')
+    conn= odb.connect(user= 'ADAM', password='1234', dsn='localhost:1521/XE')
     cursor= conn.cursor() # DB 지시자
     return conn, cursor
 

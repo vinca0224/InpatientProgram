@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>150</height>
+    <height>180</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>800</width>
-    <height>150</height>
+    <height>180</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>800</width>
-    <height>150</height>
+    <height>180</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -29,9 +29,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>50</y>
      <width>781</width>
-     <height>81</height>
+     <height>73</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -44,7 +44,7 @@
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>33</number>
+       <number>50</number>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>100</number>
@@ -54,6 +54,12 @@
       </attribute>
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>33</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>50</number>
       </attribute>
       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -125,14 +131,41 @@
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>100</y>
+     <y>130</y>
      <width>291</width>
-     <height>41</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>등록</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>160</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <family>나눔고딕코딩</family>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>환자 정보 등록</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
