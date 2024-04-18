@@ -114,28 +114,32 @@ class MainWidget(QWidget):
         db[1].execute(f"select * from INFO where id= '{searchText}' or name = '{searchText}'")
         result= db[1].fetchall()
         count = len(result)
-        self.tableWidget.setRowCount(count)
-        for x in range(count):
-            idx, name, tel, room, date, dept, desc = result[x]
-            ### datetime 타입을 str로 변환
-            date = str(date).split(' ')[0]
-            self.tableWidget.setItem(x,0,QTableWidgetItem(idx))
-            self.tableWidget.setItem(x,1,QTableWidgetItem(name))
-            self.tableWidget.setItem(x,2,QTableWidgetItem(tel))
-            self.tableWidget.setItem(x,3,QTableWidgetItem(room))
-            self.tableWidget.setItem(x,4,QTableWidgetItem(date))
-            self.tableWidget.setItem(x,5,QTableWidgetItem(dept))
-            self.tableWidget.setItem(x,6,QTableWidgetItem(desc))
-        self.disableColumnSelection(0) # ID = 0
+        if count == 0:
+            QMessageBox.about(self, '검색 결과 없음', '검색하신 ID / 이름이 존재하지 않습니다.')
+            self.printTable()
+        else:
+            self.tableWidget.setRowCount(count)
+            for x in range(count):
+                idx, name, tel, room, date, dept, desc = result[x]
+                ### datetime 타입을 str로 변환
+                date = str(date).split(' ')[0]
+                self.tableWidget.setItem(x,0,QTableWidgetItem(idx))
+                self.tableWidget.setItem(x,1,QTableWidgetItem(name))
+                self.tableWidget.setItem(x,2,QTableWidgetItem(tel))
+                self.tableWidget.setItem(x,3,QTableWidgetItem(room))
+                self.tableWidget.setItem(x,4,QTableWidgetItem(date))
+                self.tableWidget.setItem(x,5,QTableWidgetItem(dept))
+                self.tableWidget.setItem(x,6,QTableWidgetItem(desc))
+            self.disableColumnSelection(0) # ID = 0
 
     ## 마우스로 클릭하면 해당 셀의 행의 데이터 값들 출력
     def cellClicked(self, row):
         self.rownum = row
 
-    def keyPressEvent(self, input):
-        if input.key() == Qt.Key_Return:
-            self.info = MoreInfo()
-            self.info.show()
+    # def keyPressEvent(self, input):
+    #     if input.key() == Qt.Key_Return:
+    #         self.info = MoreInfo()
+    #         self.info.show()
 
     ## 종료
     def closeEvent(self, QCloseEvent) -> None: # 오버라이딩

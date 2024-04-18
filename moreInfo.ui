@@ -30,26 +30,109 @@
     <rect>
      <x>10</x>
      <y>20</y>
-     <width>261</width>
-     <height>211</height>
+     <width>151</width>
+     <height>151</height>
     </rect>
    </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>170</x>
      <y>20</y>
-     <width>411</width>
+     <width>521</width>
      <height>261</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTableWidget" name="tableWidget"/>
+     <widget class="QTableWidget" name="tableWidget">
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>33</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>120</number>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>I D</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>이 름</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>나 이</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>주 소</string>
+       </property>
+      </column>
+     </widget>
     </item>
     <item>
-     <widget class="QTableWidget" name="tableWidget_2"/>
+     <widget class="QTableWidget" name="tableWidget_3">
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>120</number>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>병 실</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>진료과</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>투약 약물</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>퇴원 예정일</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="tableWidget_2">
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>200</number>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>전 화 번  호</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>비 고</string>
+       </property>
+      </column>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -57,13 +140,26 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>240</y>
-     <width>261</width>
+     <y>190</y>
+     <width>151</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>수 정</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>240</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>삭 제</string>
    </property>
   </widget>
  </widget>
