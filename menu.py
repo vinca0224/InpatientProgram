@@ -1,11 +1,13 @@
 import sys
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QKeyEvent
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QWidget
 import oracledb as odb
 from register import RegisterInfo
+from moreInfo import MoreInfo
 
 class MainWidget(QWidget):
     def __init__(self):
@@ -16,6 +18,7 @@ class MainWidget(QWidget):
         self.printTable()
         self.func()
 
+    ## 표 출력
     def printTable(self):
         db= connectDb()
         db[1].execute('select * from INFO')
@@ -128,6 +131,11 @@ class MainWidget(QWidget):
     ## 마우스로 클릭하면 해당 셀의 행의 데이터 값들 출력
     def cellClicked(self, row):
         self.rownum = row
+
+    def keyPressEvent(self, input):
+        if input.key() == Qt.Key_Return:
+            self.info = MoreInfo()
+            self.info.show()
 
     ## 종료
     def closeEvent(self, QCloseEvent) -> None: # 오버라이딩

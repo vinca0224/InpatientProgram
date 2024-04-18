@@ -12,7 +12,7 @@ class CreateUser(QWidget):
         self.setWindowIcon(QIcon('icon.png'))
         self.btnCreate.clicked.connect(self.btnCreateClicked)
 
-    ## 로그인
+    ## 회원가입
     def btnCreateClicked(self):
         id = self.lineId.text()
         pw = self.linePw.text()

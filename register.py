@@ -41,8 +41,7 @@ class RegisterInfo(QWidget):
                 pass
             except:
                 self.eventMsg('실패', '형식에 맞게 작성해주세요')
-                pass
-            
+                pass  
         else:
             QMessageBox.about(self,'취소','취소되었습니다.')
             pass
@@ -50,14 +49,6 @@ class RegisterInfo(QWidget):
     ## 메시지 박스
     def eventMsg(self, event, des):
         QMessageBox.about(self,f'{event}',f'{des}')
-
-    ## 종료
-    # # def closeEvent(self, QCloseEvent) -> None: # 오버라이딩
-    #     re = QMessageBox.question(self, '종료확인', '종료하시겠습니까?', QMessageBox.Yes|QMessageBox.No)
-    #     if re == QMessageBox.Yes: # 종료
-    #         QCloseEvent.accept()
-    #     else:
-    #         QCloseEvent.ignore() # 취소
 
 ## DB와 연결
 def connectDb():

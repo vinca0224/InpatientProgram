@@ -34,8 +34,20 @@
      <height>461</height>
     </rect>
    </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="lineWidth">
+    <number>3</number>
+   </property>
    <property name="editTriggers">
-    <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+    <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::ExtendedSelection</enum>
    </property>
    <property name="textElideMode">
     <enum>Qt::ElideMiddle</enum>
@@ -138,6 +150,9 @@
      <widget class="QPushButton" name="btnRenew">
       <property name="text">
        <string>조회</string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
       </property>
      </widget>
     </item>
