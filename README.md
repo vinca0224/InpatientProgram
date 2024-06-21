@@ -38,3 +38,6 @@ Java와 Oracle DB를 연동하여 입원환자정보를 조회하고 관리할 �
  - UI 개선
  - 사용자 로그인 기능
  - 환자별 담당 간호사, 의사 이동
+
+## 6. 발표자료
+ - [링크](https://docs.google.com/presentation/d/161SRo_aqy-5U9_IGlqrZQ_SYN2t2_WVa/edit?usp=drive_link&ouid=108795799488547815417&rtpof=true&sd=true)
